@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registrations Dashboard</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <h1>Student Registrations Dashboard</h1>
+  <div class="container" id="studentContainer">
+    <!-- Student cards will be inserted here -->
+  </div>
+
+  <script>
+async function fetchStudents() {
+  try {
+    const response = await fetch('https://localhost:5007/api/dash-registration');
+
+
+    const students = await response.json();
+
+    const container = document.getElementById('studentContainer');
+    container.innerHTML = '';
+
+    students.forEach(student => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const imgSrc = student.UploadedFile 
+  ? `https://localhost:5007${student.UploadedFile}` 
+  : 'https://via.placeholder.com/250x150?text=No+Image';
+
+
+      let eventsHtml = 'None';
+      if (student.Events) {
+        if (Array.isArray(student.Events)) {
+          eventsHtml = student.Events.map(ev => `<span class="event-badge">${ev}</span>`).join(' ');
+        } else if (typeof student.Events === 'string') {
+          eventsHtml = student.Events.split(',').map(ev => `<span class="event-badge">${ev.trim()}</span>`).join(' ');
+        }
+      }
+
+      card.innerHTML = `
+        <img src="${imgSrc}" alt="Student Image">
+        <h3>${student.Name} (${student.StudentId})</h3>
+        <p><b>College:</b> ${student.CollegeName}</p>
+        <p><b>Department:</b> ${student.Department}</p>
+        <p><b>Year:</b> ${student.Year}</p>
+        <p><b>Contact:</b> ${student.Contact}</p>
+        <p><b>Events:</b> ${eventsHtml}</p>
+        <p><b>Team:</b> ${student.TeamName || '-'}</p>
+        <p><b>Transaction ID:</b> ${student.PaymentTransactionId || '-'}</p>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error('Error fetching students:', err);
+    document.getElementById('studentContainer').innerHTML = '<p>Error loading students. Try again later.</p>';
+  }
+}
+
+if (localStorage.getItem("auth") !== "true") {
+  window.location.href = "auth.html"; // force login
+}
+
+fetchStudents();
+</script>
+
+</body>
+</html>

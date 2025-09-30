@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THINKBIT</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Rajdhani:400,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:400,700&display=swap" rel="stylesheet" />
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="index.css" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <style>
+    /* Events list styling */
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .events-list label {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      cursor: pointer;
+      color: #FF5E00;
+    }
+
+    .events-list input[type="checkbox"] {
+      accent-color: #FF5E00;
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    #team-name-error {
+      display: none;
+      color: red;
+      font-size: 0.9em;
+    }
+    .QR-Code img {
+
+width:
+
+150px;
+
+height: 150px;
+
+}
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="college-logo-link" aria-label="College Logo">
+        <img src="image/mzcet_logo.png" alt="College Logo" class="college-logo" />
+      </a>
+      <a href="#" class="logo-link" aria-label="THINK BIT">MZCET</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aids.html">AI & DS</a></li>
+        <li><a href="it.html">IT</a></li>
+        <li><a href="event.html">Events</a></li>
+        <li><a href="register.html" class="active">Symposium Registration</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <br><br><br><br><br><br><br><br><br>
+  
+
+ <!-- Registration Section -->
+<section id="Registration" class="Registration" aria-label="Registration">
+  <div class="contact-container"> 
+    <div class="section-header">
+      <h2 class="section-title">Registration</h2>
+    </div>
+    <h3>NOTE: Before register visting a event pages</h3>
+
+    <!-- Change form action -->
+<form class="contact-form" method="POST" 
+      action="http://localhost:5007/register" 
+      enctype="multipart/form-data" novalidate>
+
+      <div class="form-group">
+        <label for="Name"><b>Name</b></label>
+        <input type="text" id="Name" name="Name" required />
+      </div>
+      <div class="form-group">
+        <label for="CollegeName"><b>College Name</b></label>
+        <input type="text" id="CollegeName" name="CollegeName" required />
+      </div>
+      <div class="form-group">
+        <label for="Department"><b>Department</b></label>
+        <input type="text" id="Department" name="Department" required />
+      </div>
+      <div class="form-group">
+        <label for="Year"><b>Year</b></label>
+        <input type="text" id="Year" name="Year" required />
+      </div>
+      <div class="form-group">
+        <label for="Contact"><b>Contact</b></label>
+        <input type="tel" id="Contact" name="Contact" required />
+      </div>
+
+      <div class="form-group">
+        <label><b>Events</b></label>
+        <small style="color:#FF5E00; display:block; margin-bottom:8px;">
+          * At least one Technical (Solo or Team) event selection is <b>compulsory</b>
+        </small>
+        <span style="font-size:1.08em; color:#00B2FF; font-weight:bold;">Technical Events</span>
+        <div class="events-list">
+          <!-- Solo Events -->
+          <div>
+            <span style="font-size:1.08em; color:#00B2FF; font-weight:bold;">Solo Events</span>
+            <label>
+              <input type="checkbox" name="Events[]" value="paper" class="technical-event solo-event" />
+              <span>Vizversa</span>
+            </label>
+            <label>
+              <input type="checkbox" name="Events[]" value="quiz" class="technical-event solo-event" />
+              <span>AI Escape Room</span>
+            </label>
+          </div>
+
+
+          <!-- Team Events -->
+          <div style="margin-top:10px;">
+            <span style="font-size:1.08em; color:#00B2FF; font-weight:bold;">Team Events</span>
+            <small style="color:#FF5E00; display:block; margin-bottom:8px;">
+          * each participants can join only one team <b>-compulsory</b>
+        </small>
+            <label>
+              <input type="checkbox" name="Events[]" value="vizversa" class="technical-event team-event" />
+              <span>TechNova Talks</span>
+            </label>
+            <label>
+              <input type="checkbox" name="Events[]" value="mind_benders" class="technical-event team-event" />
+              <span>Mind Benders</span>
+            </label>
+            <label>
+              <input type="checkbox" name="Events[]" value="ai_escape_room" class="technical-event team-event" />
+              <span>TECHXHIBIT</span>
+            </label>
+          </div>
+
+          <!-- Non-Technical -->
+          <div style="margin-top:10px;">
+            <span style="font-size:1.08em; color:#00B2FF; font-weight:bold;">Non-Technical</span>
+            <label>
+              <input type="checkbox" name="Events[]" value="logolure" />
+              <span>LogoLure</span>
+            </label>
+            <label>
+              <input type="checkbox" name="Events[]" value="link_o_link" />
+              <span>Link-O-Link</span>
+            </label>
+            <label>
+              <input type="checkbox" name="Events[]" value="ai_jam" />
+              <span>AI Jam</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Section -->
+      <div id="team-box" style="margin-top: 20px; display:none;">
+        <label><b>Team Options</b></label>
+        
+        <div>
+          <label>
+            <input type="radio" name="teamOption" value="new" checked />
+            Create New Team
+          </label>
+          <label>
+            <input type="radio" name="teamOption" value="join" />
+            Join Existing Team
+          </label>
+        </div>
+
+        <!-- New Team Name -->
+        <div id="new-team-box" style="margin-top:10px;" class="form-group">
+          <label for="TeamName"><b>Team Name</b></label>
+          <input type="text" id="TeamName" name="TeamName" placeholder="Enter your team name" />
+          <small id="team-name-error" style="display:none; color:red;">
+            This team name already exists. Please choose another.
+          </small>
+        </div>
+
+        <!-- Existing Team ID -->
+        <div id="existing-team-box" style="margin-top:10px; display:none;" class="form-group">
+          <label for="TeamId"><b>Team ID</b></label>
+          <input type="text" id="TeamId" name="TeamId" placeholder="Enter existing team ID" />
+          <small id="team-id-error" style="display:none; color:red;">
+            This team ID does not exist. Please check again.
+          </small>
+        </div>
+      </div>
+      <span style="font-size:1.08em; color:#00B2FF; font-weight:bold;">GPAY NO : 9360899117</span>
+      <div class="form-group">
+
+      <div class="QR-Code">
+
+      <label for="QR-Code">Scan QR-Code</label>
+
+      <img src="image/gpaydraft.jpg" alt="QR-Code">
+
+      </div>
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="payment"><b>Payment Transaction ID</b></label>
+        <input type="text" id="payment" name="payment" placeholder="Enter your payment ID" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Upload"><b>Upload File</b></label>
+        <input type="file" id="Upload" name="Upload" />
+      </div>
+
+      <button type="submit" class="btn-submit">SUBMIT</button>
+    </form>
+  </div>
+
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <span class="footer-separator">|</span>
+      <a href="aids.html">AI & DS</a>
+      <span class="footer-separator">|</span>
+      <a href="it.html">IT</a>
+      <span class="footer-separator">|</span>
+      <a href="register.html">Registration Symposium</a>
+      <span class="footer-separator">|</span>
+      <a href="event.html">Events</a>
+      <span class="footer-separator">|</span>
+      <a href="contact.html">Contact</a>
+    </div>
+    <!-- ✅ Email Contact -->
+    <div class="footer-email">
+      <p>
+        <strong>Email:</strong>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=thinkbit@mountzion.ac.in&su=Student%20Query">
+  thinkbit@mountzion.ac.in
+</a>
+ </p>
+    </div>
+
+    <div class="footer-coordinators">
+  <ul class="coordinator-list">
+    <li><strong>Student Coordinator</strong></li>
+    <li><strong></strong> Susmitha- 9629521501</li>
+    <li><strong></strong> Sujithra - 8637459741</li>
+    <li><strong></strong> Mangudi - 6374254875</li>
+     <li><strong></strong> Saravanan - 9360899117</li>
+    <li><strong>Staff Coordinator</strong></li>
+    <li><strong></strong>  Mrs. M.S. Ramadevi (HOD/AI&DS)</li>
+    <li><strong></strong> Mr. G. Swaminathan (HOD/IT)</li>
+  </ul>
+</div>
+
+
+
+
+    <div class="footer-bottom">
+      <p>© 2025 Mount Zion College of Engineering and Technology</p>
+    </div>
+
+    <div class="footer-credit">
+      Designed by Mount Zion Web Team
+    </div>
+  </div>
+</footer>
+
+
+
+
+  <br>
+
+
+   <script src="index.js"></script>
+
+
+
+</body>
+</html>

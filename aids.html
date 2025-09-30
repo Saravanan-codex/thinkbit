@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THINKBIT</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Rajdhani:400,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:400,700&display=swap" rel="stylesheet" />
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="index.css" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+
+<body>
+
+  <!-- Animated Backgrounds -->
+  <div class="grid-bg"></div>
+  <div class="shapes-container" aria-hidden="true">
+    <div class="shape shape-circle"></div>
+    <div class="shape shape-triangle"></div>
+    <div class="shape shape-square"></div>
+  </div>
+  <div class="particle"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="college-logo-link" aria-label="College Logo">
+        <img src="image/mzcet_logo.png" alt="College Logo" class="college-logo" />
+      </a>
+      <a href="#" class="logo-link" aria-label="THINK BIT">MZCET</a>
+      <ul class="nav-links">
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="aids.html" class="active">AI & DS</a></li>
+        <li><a href="it.html">IT</a></li>
+        <li><a href="event.html">Events</a></li>
+        <li><a href="register.html">Symposium Registration</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <br><br><br>
+
+  <!-- Faculty Section -->
+  <section id="faculty" class="features" aria-label="Faculty">
+    <div class="section-header">
+      <h2 class="section-title">Faculty</h2>
+      <p class="section-subtitle">Experienced mentors and researchers.</p>
+    </div>
+    <br />
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Ms. Ramadevi</h3>
+        <p>Head of Dept.AI-DS</p>
+      </div>
+      <div class="feature-card">
+        <h3>Geethanjali R</h3>
+        <p>AP/AI-DS</p>
+      </div>
+      <div class="feature-card">
+        <h3>M.Shanmugapriya</h3>
+        <p>AP/AI-DS</p>
+      </div>
+      <div class="feature-card">
+        <h3>M.Aarthie</h3>
+        <p>AP/AI-DS</p>
+      </div>
+      <div class="feature-card">
+        <h3>R.Sangeetha</h3>
+        <p>AP/AI-DS</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Achievements Section -->
+  <section id="academic-achievements" class="features" aria-label="Academic Achievements">
+    <div class="section-header">
+      <h2 class="section-title">Academic Achievements</h2>
+    </div>
+    <br />
+    <center>
+      <div class="swiper scroll-gallery mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="image/img_7.jpg" alt="Logo 1" /></div>
+          <div class="swiper-slide"><img src="image/img_6.jpg" alt="Logo 2" /></div>
+          <div class="swiper-slide"><img src="image/img_2.jpg" alt="Logo 3" /></div>
+          <div class="swiper-slide"><img src="image/img_3.jpg" alt="Logo 4" /></div>
+          <div class="swiper-slide"><img src="image/img_5.jpg" alt="Logo 5" /></div>
+          <div class="swiper-slide"><img src="image/img_4.jpg" alt="Logo 6" /></div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- Navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </center>
+  </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a> | 
+        <a href="aids.html">AI & DS</a> | 
+        <a href="it.html">IT</a> | 
+        <a href="register.html">Registration Symposium</a> | 
+        <a href="event.html">Events</a> | 
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-email">
+        <p><strong>Email:</strong> <a href="mailto:thinkbit@mountzion.ac.in">thinkbit@mountzion.ac.in</a></p>
+      </div>
+      <div class="footer-coordinators">
+        <ul>
+          <li><strong>Student Coordinator</strong></li>
+          <li>Susmitha - 9629521501</li>
+          <li>Sujithra - 8637459741</li>
+          <li>Mangudi - 6374254875</li>
+          <li>Saravanan - 9360899117</li>
+          <li><strong>Staff Coordinator</strong></li>
+          <li>Mrs. M.S. Ramadevi (HOD/AI&DS)</li>
+          <li>Mr. G. Swaminathan (HOD/IT)</li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Mount Zion College of Engineering and Technology</p>
+        <p>Designed by Mount Zion Web Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Image Preview Modal -->
+  <div
+    id="imageModal"
+    style="
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.86);
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <img
+      id="modalImg"
+      src=""
+      style="
+        max-width: 92vw;
+        max-height: 90vh;
+        border-radius: 20px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+        transition: transform 0.18s;
+      "
+    />
+  </div>
+       <script src="index.js"></script>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper and modal -->
+  <script>
+    // Initialize Swiper
+    const swiper = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: { delay: 2000 },
+      breakpoints: {
+        0: { slidesPerView: 1, spaceBetween: 12 },
+        480: { slidesPerView: 1.25, spaceBetween: 14 },
+        640: { slidesPerView: 1.75, spaceBetween: 16 },
+        900: { slidesPerView: 2.5, spaceBetween: 18 },
+        1200: { slidesPerView: 3, spaceBetween: 20 },
+      },
+      pagination: { el: ".swiper-pagination", clickable: true },
+      navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+    });
+
+    // Image modal logic
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+
+    document.querySelectorAll(".swiper-slide img").forEach((img) => {
+      img.addEventListener("click", () => {
+        if (modal.style.display === "flex" && modalImg.src === img.src) {
+          modal.style.display = "none";
+          modalImg.src = "";
+        } else {
+          modalImg.src = img.src;
+          modal.style.display = "flex";
+        }
+      });
+    });
+
+    // Close modal when clicking background
+    modal.addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) {
+        modal.style.display = "none";
+        modalImg.src = "";
+      }
+    });
+
+    // Optional: close modal with Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        modal.style.display = "none";
+        modalImg.src = "";
+      }
+    });
+  </script>
+
+  <style>
+    /* Background elements behind everything */
+    .grid-bg, .shapes-container, .particle {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Main content above background */
+    body, main, section, .features {
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Swiper container */
+    .swiper {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-bottom: 48px;
+    }
+
+    /* Swiper slide images */
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</body>
+</html>

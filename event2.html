@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EVENTS - THINK BIT</title>
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    .event-details {
+      max-width: 800px;
+      margin: 120px auto 60px;
+      padding: 30px;
+      background: rgba(20, 20, 20, 0.85);
+      border: 1px solid rgba(255, 94, 0, 0.3);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 40px rgba(255, 94, 0, 0.3);
+      font-family: 'Rajdhani', sans-serif;
+      color: #f0f0f0;
+      animation: fadeIn 1.2s ease-in-out;
+      z-index: 10;
+      position: relative;
+    }
+
+    .event-details h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      background: linear-gradient(45deg, #FF5E00, #00B2FF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .event-details p, .event-details li {
+      line-height: 1.6;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .event-details ul {
+      margin-left: 20px;
+      list-style: square;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 24px;
+      background: linear-gradient(45deg, #FF5E00, #00B2FF);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: 0.3s;
+    }
+    .back-btn:hover {
+      box-shadow: 0 0 20px rgba(255, 94, 0, 0.7), 0 0 20px rgba(0, 178, 255, 0.7);
+      transform: translateY(-3px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css?family=Rajdhani:400,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+
+  <!-- 🔹 Animated Background Layers -->
+  <div class="grid-bg"></div>
+  <div class="gradient-overlay"></div>
+  <div class="shapes-container">
+    <div class="shape shape-circle"></div>
+    <div class="shape shape-triangle"></div>
+    <div class="shape shape-square"></div>
+  </div>
+
+  <!-- Navbar (same as index) -->
+  <nav>
+  <div class="nav-container">
+    <!-- College Logo -->
+    <a href="#" class="college-logo-link" aria-label="College Logo">
+      <img src="image\mzcet_logo.png" alt="College Logo" class="college-logo" />
+    </a>
+    <a href="#" class="logo-link" aria-label="THINK BIT">MZCET</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aids.html">AI & DS</a></li>
+      <li><a href="it.html">IT</a></li>
+      <li><a href="event.html" class="active">Events</a></li>
+      <li><a href="register.html">Symposium Registration</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<br><br><br>
+<!-- Event 2 Details -->
+<div class="event-details" id="event3">
+  <h1>Real-Time Problem Solving (1 Hour)</h1>
+  <p><strong>Date:</strong> 10th October 2025</p>
+  <p><strong>Description:</strong> Participants are given a real-world challenge and must propose a practical, innovative solution within 60 minutes.</p>
+    <p><strong>Rules:</strong></p>
+  <ul>
+    <li>Team size: 1–3 members.</li>
+    <li>Problem statement revealed at the beginning of the event.</li>
+    <li>Time: 1 hour to analyze, ideate, and prepare and presentation</li>
+    <li>Final pitch: 5-minute presentation + 2-minute Q&A.</li>
+    <li>Device restriction:  Use of internet and mobile phones is strictly prohibited during the challenge</li>
+    <li>Evalution Based creativity, feasibility, and relevance.</li>
+    
+  </ul>
+</div>
+</section>
+
+<section id="event2">
+
+</section>
+
+<script>
+  function showEvent(num){
+    document.querySelectorAll('.event-details').forEach(e => e.classList.remove('active'));
+    document.getElementById('event'+num).classList.add('active');
+  }
+
+  // Optional: Show first event by default
+  showEvent(1);
+  showEvent(2);
+</script>
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="home.html">Home</a>
+      <span class="footer-separator">|</span>
+      <a href="aids.html">AI & DS</a>
+      <span class="footer-separator">|</span>
+      <a href="it.html">IT</a>
+      <span class="footer-separator">|</span>
+      <a href="register.html">Registration Symposium</a>
+      <span class="footer-separator">|</span>
+      <a href="event.html">Events</a>
+      <span class="footer-separator">|</span>
+      <a href="contact.html">Contact</a>
+    </div>
+    <!-- ✅ Email Contact -->
+    <div class="footer-email">
+      <p>
+        <strong>Email:</strong>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=thinkbit@mountzion.ac.in&su=Student%20Query">
+  thinkbit@mountzion.ac.in
+</a>
+ </p>
+    </div>
+
+    <div class="footer-coordinators">
+  <ul class="coordinator-list">
+    <li><strong>Student Coordinator</strong></li>
+    <li><strong></strong> Susmitha- 9629521501</li>
+    <li><strong></strong> Sujithra - 8637459741</li>
+    <li><strong></strong> Mangudi - 6374254875</li>
+     <li><strong></strong> Saravanan - 9360899117</li>
+    <li><strong>Staff Coordinator</strong></li>
+    <li><strong></strong>  Mrs. M.S. Ramadevi (HOD/AI&DS)</li>
+    <li><strong></strong> Mr. G. Swaminathan (HOD/IT)</li>
+  </ul>
+</div>
+
+
+
+
+    <div class="footer-bottom">
+      <p>© 2025 Mount Zion College of Engineering and Technology</p>
+    </div>
+
+    <div class="footer-credit">
+      Designed by Mount Zion Web Team
+    </div>
+  </div>
+</footer>
+
+
+</body>
+  <script src="index.js"></script>
+</html>
