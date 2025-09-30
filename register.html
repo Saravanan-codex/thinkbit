@@ -90,10 +90,7 @@ height: 150px;
     </div>
     <h3>NOTE: Before register visting a event pages</h3>
 
-    <!-- Change form action -->
-<form class="contact-form" method="POST" 
-      action="http://localhost:5007/register" 
-      enctype="multipart/form-data" novalidate>
+    <form class="contact-form" method="POST" action="/register" enctype="multipart/form-data" novalidate>
 
       <div class="form-group">
         <label for="Name"><b>Name</b></label>
@@ -274,7 +271,7 @@ height: 150px;
     <li><strong></strong> Mangudi - 6374254875</li>
      <li><strong></strong> Saravanan - 9360899117</li>
     <li><strong>Staff Coordinator</strong></li>
-    <li><strong></strong>  Mrs. M.S. Ramadevi (HOD/AI&DS)</li>
+    <li><strong></strong>  Mrs. M.S. Ramadevi (HOD/AI&amp;DS)</li>
     <li><strong></strong> Mr. G. Swaminathan (HOD/IT)</li>
   </ul>
 </div>
@@ -293,12 +290,155 @@ height: 150px;
 </footer>
 
 
-
-
   <br>
-
-
    <script src="index.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.contact-form');
+  const teamEvents = document.querySelectorAll('.team-event');
+  const teamBox = document.getElementById('team-box');
+  const newTeamBox = document.getElementById('new-team-box');
+  const existingTeamBox = document.getElementById('existing-team-box');
+  const teamNameInput = document.getElementById('TeamName');
+  const teamIdInput = document.getElementById('TeamId');
+  const teamNameError = document.getElementById('team-name-error');
+  const teamIdError = document.getElementById('team-id-error');
+  const teamOptionRadios = document.querySelectorAll('input[name="teamOption"]');
+
+ const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api';
+// <-- Vercel API base
+
+  // --- Show/Hide Team Options when team events are selected ---
+  teamEvents.forEach(ev => {
+    ev.addEventListener('change', () => {
+      const anyTeamSelected = document.querySelectorAll('.team-event:checked').length > 0;
+      teamBox.style.display = anyTeamSelected ? 'block' : 'none';
+      if (!anyTeamSelected) {
+        teamNameInput.value = '';
+        teamIdInput.value = '';
+        teamNameError.style.display = 'none';
+        teamIdError.style.display = 'none';
+        newTeamBox.style.display = 'block';
+        existingTeamBox.style.display = 'none';
+        teamOptionRadios[0].checked = true;
+      }
+    });
+  });
+
+  // --- Toggle between New Team and Join Existing Team ---
+  teamOptionRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.value === 'new') {
+        newTeamBox.style.display = 'block';
+        existingTeamBox.style.display = 'none';
+      } else {
+        newTeamBox.style.display = 'none';
+        existingTeamBox.style.display = 'block';
+      }
+    });
+  });
+
+  // --- Form validation & submission ---
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // At least one technical event required
+    const technicalChecked = document.querySelectorAll('.technical-event:checked').length;
+    if (technicalChecked === 0) {
+      alert('Please select at least one Technical event. It is compulsory.');
+      return;
+    }
+
+    teamNameError.style.display = 'none';
+    teamIdError.style.display = 'none';
+
+    let proceed = true;
+
+    // --- Team Event Handling ---
+    if (document.querySelectorAll('.team-event:checked').length > 0) {
+      const selectedOption = document.querySelector('input[name="teamOption"]:checked').value;
+
+      if (selectedOption === 'new') {
+        const teamName = teamNameInput.value.trim();
+        if (!teamName) {
+          alert("Please enter a team name for team events.");
+          proceed = false;
+        } else {
+          try {
+            // Check team name exists
+            const response = await fetch(`${BASE_URL}/check-team?team=${encodeURIComponent(teamName)}`);
+            const data = await response.json();
+            if (data.exists) {
+              teamNameError.style.display = 'block';
+              proceed = false;
+            }
+          } catch (err) {
+            console.error("Error checking team name:", err);
+            alert("Server error while checking team name.");
+            proceed = false;
+          }
+        }
+      } else if (selectedOption === 'join') {
+        const teamId = teamIdInput.value.trim().toUpperCase();
+        if (!teamId) {
+          alert("Please enter an existing team ID to join.");
+          proceed = false;
+        } else {
+          try {
+            // Check team ID exists
+            const response = await fetch(`${BASE_URL}/check-team-id?id=${encodeURIComponent(teamId)}`);
+            const data = await response.json();
+            if (!data.exists) {
+              teamIdError.style.display = 'block';
+              proceed = false;
+            }
+          } catch (err) {
+            console.error("Error checking team ID:", err);
+            alert("Server error while checking team ID.");
+            proceed = false;
+          }
+        }
+      }
+    }
+
+    if (!proceed) return;
+
+    // --- Submit form ---
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch(`${BASE_URL}/register`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+
+      if (data.studentId) {
+        let msg = `✅ Registration Successful!\nYour Student ID: ${data.studentId}`;
+        if (data.teamId) msg += `\nYour Team ID: ${data.teamId}`;
+        alert(msg);
+
+        // Reset form
+        form.reset();
+        teamBox.style.display = 'none';
+        newTeamBox.style.display = 'block';
+        existingTeamBox.style.display = 'none';
+        teamNameError.style.display = 'none';
+        teamIdError.style.display = 'none';
+        teamOptionRadios[0].checked = true;
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("Server error. Please try later.");
+    }
+  });
+});
+</script>
+
+
+
 
 
 
