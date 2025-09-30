@@ -293,7 +293,7 @@ height: 150px;
   <br>
    <script src="index.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const form = document.querySelector('.contact-form');
   const teamEvents = document.querySelectorAll('.team-event');
   const teamBox = document.getElementById('team-box');
@@ -305,8 +305,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const teamIdError = document.getElementById('team-id-error');
   const teamOptionRadios = document.querySelectorAll('input[name="teamOption"]');
 
- const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api';
-// <-- Vercel API base
+const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api/register';
+
+// Example usage
+const res = await fetch(BASE_URL, {
+  method: 'POST',
+  body: formData,
+});
+
 
   // --- Show/Hide Team Options when team events are selected ---
   teamEvents.forEach(ev => {

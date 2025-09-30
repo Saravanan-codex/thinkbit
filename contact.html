@@ -227,10 +227,14 @@
   <script src="index.js"></script>
 
   <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async() => {
   const form = document.getElementById('contact-form');
-  const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api'; // your Vercel API
+  const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api/contact'; // your Vercel API
 
+  const res = await fetch(BASE_URL, {
+  method: 'POST',
+  body: formData,
+});
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
