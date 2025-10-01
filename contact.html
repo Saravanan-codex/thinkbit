@@ -129,21 +129,21 @@
       <h2 class="section-title">Contact Us</h2>
       <p class="section-subtitle">For queries, reach out to the department office.</p>
     </div>
-    <form class="contact-form" id="contact-form">
-      <div class="form-group">
-        <label for="Name">Name</label>
-        <input type="text" id="Name" name="Name" required />
-      </div>
-      <div class="form-group">
-        <label for="Email">Email</label>
-        <input type="email" id="Email" name="Email" required />
-      </div>
-      <div class="form-group">
-        <label for="Message">Message</label>
-        <textarea id="Message" name="Message" required></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Send Message</button>
-    </form>
+    <form id="contact-form">
+  <div class="form-group">
+    <label for="Name">Name</label>
+    <input type="text" id="Name" name="Name" required />
+  </div>
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <input type="email" id="Email" name="Email" required />
+  </div>
+  <div class="form-group">
+    <label for="Message">Message</label>
+    <textarea id="Message" name="Message" required></textarea>
+  </div>
+  <button type="submit" class="btn-submit">Send Message</button>
+</form>
   </div>
 </section>
   <br>
@@ -227,41 +227,31 @@
   <script src="index.js"></script>
 
   <script>
-document.addEventListener('DOMContentLoaded', async() => {
-  const form = document.getElementById('contact-form');
-  const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api/contact'; // your Vercel API
-
-  const res = await fetch(BASE_URL, {
-  method: 'POST',
-  body: formData,
-});
-  form.addEventListener('submit', async (e) => {
+ document.getElementById('contact-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    const formData = new FormData(form);
-    const dataObj = Object.fromEntries(formData.entries());
-
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api';
     try {
-      const res = await fetch(`${BASE_URL}/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dataObj)
-      });
+const res = await fetch(`${BASE_URL}/api/contact`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+});
 
-      const data = await res.json();
-      if (data.success) {
-        alert("✅ Your message has been sent successfully!");
-        form.reset();
+      const result = await res.json();
+      if (result.success) {
+        alert('Message sent successfully!');
+        e.target.reset();
       } else {
-        alert("❌ Something went wrong. Please try again.");
+        alert('Failed to send message. Try again.');
       }
-    } catch (err) {
-      console.error("Error submitting contact form:", err);
-      alert("❌ Server error. Please try again later.");
+    } catch (error) {
+      alert('Server error. Please try later.');
     }
   });
-});
 </script>
+
 </body>
 
 

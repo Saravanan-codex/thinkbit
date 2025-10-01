@@ -90,7 +90,7 @@ height: 150px;
     </div>
     <h3>NOTE: Before register visting a event pages</h3>
 
-    <form class="contact-form" method="POST" action="/register" enctype="multipart/form-data" novalidate>
+    <form class="contact-form" enctype="multipart/form-data" novalidate>
 
       <div class="form-group">
         <label for="Name"><b>Name</b></label>
@@ -230,8 +230,9 @@ height: 150px;
         <input type="file" id="Upload" name="Upload" />
       </div>
 
-      <button type="submit" class="btn-submit">SUBMIT</button>
-    </form>
+       <input type="file" id="Upload" name="Upload" />
+  <button type="submit">SUBMIT</button>
+</form>
   </div>
 
 
@@ -293,7 +294,8 @@ height: 150px;
   <br>
    <script src="index.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', async () => {
+  
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.contact-form');
   const teamEvents = document.querySelectorAll('.team-event');
   const teamBox = document.getElementById('team-box');
@@ -305,16 +307,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const teamIdError = document.getElementById('team-id-error');
   const teamOptionRadios = document.querySelectorAll('input[name="teamOption"]');
 
-const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api/register';
+  // Base API URL without /register at the end
+  const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api';
 
-// Example usage
-const res = await fetch(BASE_URL, {
-  method: 'POST',
-  body: formData,
-});
-
-
-  // --- Show/Hide Team Options when team events are selected ---
+  // Show/Hide Team Options when team events are selected
   teamEvents.forEach(ev => {
     ev.addEventListener('change', () => {
       const anyTeamSelected = document.querySelectorAll('.team-event:checked').length > 0;
@@ -331,7 +327,7 @@ const res = await fetch(BASE_URL, {
     });
   });
 
-  // --- Toggle between New Team and Join Existing Team ---
+  // Toggle between New Team and Join Existing Team
   teamOptionRadios.forEach(radio => {
     radio.addEventListener('change', () => {
       if (radio.value === 'new') {
@@ -344,7 +340,7 @@ const res = await fetch(BASE_URL, {
     });
   });
 
-  // --- Form validation & submission ---
+  // Form validation & submission
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -360,7 +356,7 @@ const res = await fetch(BASE_URL, {
 
     let proceed = true;
 
-    // --- Team Event Handling ---
+    // Team Event Handling
     if (document.querySelectorAll('.team-event:checked').length > 0) {
       const selectedOption = document.querySelector('input[name="teamOption"]:checked').value;
 
@@ -371,7 +367,6 @@ const res = await fetch(BASE_URL, {
           proceed = false;
         } else {
           try {
-            // Check team name exists
             const response = await fetch(`${BASE_URL}/check-team?team=${encodeURIComponent(teamName)}`);
             const data = await response.json();
             if (data.exists) {
@@ -391,7 +386,6 @@ const res = await fetch(BASE_URL, {
           proceed = false;
         } else {
           try {
-            // Check team ID exists
             const response = await fetch(`${BASE_URL}/check-team-id?id=${encodeURIComponent(teamId)}`);
             const data = await response.json();
             if (!data.exists) {
@@ -409,7 +403,7 @@ const res = await fetch(BASE_URL, {
 
     if (!proceed) return;
 
-    // --- Submit form ---
+    // Submit form
     const formData = new FormData(form);
 
     try {
@@ -441,6 +435,7 @@ const res = await fetch(BASE_URL, {
     }
   });
 });
+
 </script>
 
 
