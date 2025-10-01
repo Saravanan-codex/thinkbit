@@ -124,12 +124,13 @@
 
   <!-- Contact Section -->
   <section id="contact" class="contact" aria-label="Contact form">
-  <div class="contact-container">
-    <div class="section-header">
-      <h2 class="section-title">Contact Us</h2>
-      <p class="section-subtitle">For queries, reach out to the department office.</p>
-    </div>
-    <form id="contact-form">
+    <div class="contact-container">
+      <div class="section-header">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">For queries, reach out to the department office.</p>
+      </div>
+      <form class="contact-form" method="POST">
+
   <div class="form-group">
     <label for="Name">Name</label>
     <input type="text" id="Name" name="Name" required />
@@ -144,8 +145,10 @@
   </div>
   <button type="submit" class="btn-submit">Send Message</button>
 </form>
-  </div>
-</section>
+
+
+    </div>
+  </section>
   <br>
 
   <div style="text-align:center; margin-top:20px;">
@@ -203,7 +206,7 @@
     <li><strong></strong> Mangudi - 6374254875</li>
      <li><strong></strong> Saravanan - 9360899117</li>
     <li><strong>Staff Coordinator</strong></li>
-    <li><strong></strong>  Mrs. M.S. Ramadevi (HOD/AI&amp;DS)</li>
+    <li><strong></strong>  Mrs. M.S. Ramadevi (HOD/AI&DS)</li>
     <li><strong></strong> Mr. G. Swaminathan (HOD/IT)</li>
   </ul>
 </div>
@@ -224,34 +227,43 @@
 
 
   <!-- JavaScript -->
-  <script src="index.js"></script>
-
   <script>
- document.getElementById('contact-form').addEventListener('submit', async (e) => {
+    // --- Contact Form ---
+  const contactForm = document.querySelector('#contact form.contact-form');
+  contactForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    const BASE_URL = 'https://thinkbit-fhc7e50xz-saravanans-projects-cbd3d049.vercel.app/api';
-    try {
-const res = await fetch(`${BASE_URL}/api/contact`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(data)
-});
+    const formData = {
+      Name: document.getElementById("Name").value.trim(),
+      Email: document.getElementById("Email").value.trim(),
+      Message: document.getElementById("Message").value.trim(),
+    };
 
-      const result = await res.json();
-      if (result.success) {
-        alert('Message sent successfully!');
-        e.target.reset();
+    if (!formData.Name || !formData.Email || !formData.Message) {
+      return alert("Please fill all fields in the contact form.");
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.Email)) {
+      return alert("Please enter a valid email address.");
+    }
+
+    try {
+      const res = await fetch('https://thinkbit-htah5fjuv-saravanans-projects-cbd3d049.vercel.app/api/contact', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      if (res.ok) {
+        alert("✅ Message sent successfully!");
+        contactForm.reset();
       } else {
-        alert('Failed to send message. Try again.');
+        const errorText = await res.text();
+        alert("❌ Failed to send: " + errorText);
       }
-    } catch (error) {
-      alert('Server error. Please try later.');
+    } catch (err) {
+      alert("⚠️ Error: " + err.message);
     }
   });
-</script>
-
+  </script>
 </body>
 
 

@@ -1,66 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile Menu Toggle
-       const menuToggle = document.querySelector('.menu-toggle');
-     const navLinks = document.querySelector('.nav-links');
-     const mobileBackdrop = document.querySelector('.mobile-backdrop'); // If added
+  // --- Mobile Menu Toggle ---
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const mobileBackdrop = document.querySelector('.mobile-backdrop');
 
-     menuToggle.addEventListener('click', () => {
-       navLinks.classList.toggle('active');
-       menuToggle.classList.toggle('active');
-       // Optionally toggle backdrop
-     });
+  menuToggle?.addEventListener('click', () => {
+    navLinks?.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+  });
 
-     // Close on outside click (backdrop)
-     if (mobileBackdrop) {
-       mobileBackdrop.addEventListener('click', () => {
-         navLinks.classList.remove('active');
-         menuToggle.classList.remove('active');
-       });
-     }
+  mobileBackdrop?.addEventListener('click', () => {
+    navLinks?.classList.remove('active');
+    menuToggle?.classList.remove('active');
+  });
 
-     // Close on escape key or link click (optional)
-     document.addEventListener('keydown', (e) => {
-       if (e.key === 'Escape') {
-         navLinks.classList.remove('active');
-         menuToggle.classList.remove('active');
-       }
-     });
-     navLinks.querySelectorAll('a').forEach(link => {
-       link.addEventListener('click', () => {
-         navLinks.classList.remove('active');
-         menuToggle.classList.remove('active');
-       });
-     });
-     
-  // Hero Text Rotator
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      navLinks?.classList.remove('active');
+      menuToggle?.classList.remove('active');
+    }
+  });
+
+  navLinks?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks?.classList.remove('active');
+      menuToggle?.classList.remove('active');
+    });
+  });
+
+  // --- Hero Text Rotator ---
   const textSets = document.querySelectorAll('.text-set');
   let currentIndex = 0;
   setInterval(() => {
-    textSets[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % textSets.length;
-    textSets[currentIndex].classList.add('active');
+    if (textSets.length) {
+      textSets[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % textSets.length;
+      textSets[currentIndex].classList.add('active');
+    }
   }, 3500);
 
  
-  // Back To Top Button Behavior
+
+  // --- Back To Top ---
   const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    backToTop.hidden = window.scrollY < 300;
-  });
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.hidden = window.scrollY < 300;
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
-  // Nav styling on scroll
+  // --- Nav styling on scroll ---
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if(window.scrollY > 50) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+  }
+
+  // Initial setup
+  updateTeamBoxDisplay();
 });
-
-
-
-
-
- 
